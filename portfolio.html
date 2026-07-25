@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ambati Suresh — Senior Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14162B;
+    --surface: #1B1E3D;
+    --surface-2: #22254A;
+    --coral: #FF6B5B;
+    --mint: #4ADE94;
+    --amber: #FFC857;
+    --text: #F2F0FA;
+    --text-dim: #9A9CC0;
+    --line: #33366A;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Space Grotesk', sans-serif;
+  }
+
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+  }
+
+  a{ color: inherit; text-decoration:none; }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background: rgba(20,22,43,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:64px;
+  }
+  .logo{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
+    letter-spacing:0.02em;
+  }
+  .logo span{ color: var(--mint); }
+  .nav-links{
+    display:flex;
+    gap:28px;
+    font-size:0.9rem;
+    color: var(--text-dim);
+  }
+  .nav-links a:hover{ color: var(--text); }
+  .nav-cta{
+    background: var(--coral);
+    color: var(--bg);
+    padding:8px 16px;
+    border-radius:8px;
+    font-weight:600;
+    font-size:0.85rem;
+  }
+  .nav-cta:hover{ background: var(--amber); }
+  @media (max-width:720px){
+    .nav-links{ display:none; }
+  }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:88px 0 60px;
+    position:relative;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    color: var(--mint);
+    font-size:0.85rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:8px; height:8px;
+    border-radius:50%;
+    background: var(--mint);
+    box-shadow: 0 0 0 4px rgba(74,222,148,0.15);
+  }
+  h1.display{
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight:700;
+    line-height:1.05;
+    max-width:780px;
+    letter-spacing:-0.01em;
+  }
+  h1.display .accent{ color: var(--coral); }
+  .hero-sub{
+    margin-top:22px;
+    max-width:580px;
+    color: var(--text-dim);
+    font-size:1.08rem;
+  }
+  .hero-cta{
+    margin-top:34px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    padding:13px 24px;
+    border-radius:10px;
+    font-weight:600;
+    font-size:0.92rem;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition: transform .15s ease, background .15s ease;
+  }
+  .btn-primary{
+    background: var(--mint);
+    color: #0B2416;
+  }
+  .btn-primary:hover{ transform: translateY(-2px); background:#5FE8A6; }
+  .btn-ghost{
+    border:1px solid var(--line);
+    color: var(--text);
+  }
+  .btn-ghost:hover{ border-color: var(--coral); transform: translateY(-2px); }
+
+  /* ---------- PIPELINE SIGNATURE ---------- */
+  .pipeline-card{
+    margin-top:56px;
+    background: var(--surface);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:28px 28px 22px;
+    overflow:hidden;
+  }
+  .pipeline-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:26px;
+  }
+  .pipeline-title{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.82rem;
+    color: var(--text-dim);
+    letter-spacing:0.04em;
+  }
+  .pipeline-metric{
+    font-family:'JetBrains Mono', monospace;
+    font-size:1.6rem;
+    font-weight:700;
+    color: var(--amber);
+  }
+  .pipeline-metric span{
+    font-size:0.85rem;
+    color: var(--text-dim);
+    font-weight:400;
+    margin-left:6px;
+  }
+  .track{
+    position:relative;
+    height:64px;
+    margin: 8px 0 30px;
+  }
+  .track-line{
+    position:absolute;
+    top:50%;
+    left:0; right:0;
+    height:2px;
+    background: var(--line);
+    transform: translateY(-50%);
+  }
+  .stage{
+    position:absolute;
+    top:50%;
+    transform: translate(-50%,-50%);
+    width:14px; height:14px;
+    border-radius:50%;
+    background: var(--surface-2);
+    border:2px solid var(--coral);
+    z-index:3;
+  }
+  .stage-label{
+    position:absolute;
+    top: calc(50% + 16px);
+    transform: translateX(-50%);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.7rem;
+    color: var(--text-dim);
+    white-space:nowrap;
+  }
+  .doc{
+    position:absolute;
+    top:50%;
+    width:10px; height:13px;
+    background: var(--mint);
+    border-radius:2px;
+    transform: translate(-50%,-50%);
+    animation: travel 3.4s linear infinite;
+    z-index:2;
+  }
+  @keyframes travel{
+    0%{ left:0%; opacity:0; }
+    6%{ opacity:1; }
+    94%{ opacity:1; }
+    100%{ left:100%; opacity:0; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .doc{ animation: none; left:50%; opacity:0.6; }
+  }
+  .pipeline-foot{
+    display:flex;
+    justify-content:space-between;
+    color: var(--text-dim);
+    font-size:0.82rem;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{ padding: 76px 0; border-top:1px solid var(--line); }
+  .section-tag{
+    font-family:'JetBrains Mono', monospace;
+    color: var(--coral);
+    font-size:0.82rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  h2.display{
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    font-weight:600;
+    margin-bottom:34px;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap:50px;
+  }
+  .about-text p{ color: var(--text-dim); margin-bottom:16px; max-width:520px; }
+  .stat-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  .stat{
+    background: var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:18px;
+  }
+  .stat-num{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:1.7rem;
+    font-weight:700;
+    color: var(--mint);
+  }
+  .stat-label{
+    font-size:0.8rem;
+    color: var(--text-dim);
+    margin-top:4px;
+  }
+  @media (max-width:780px){
+    .about-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- EXPERIENCE ---------- */
+  .timeline{
+    position:relative;
+    padding-left:28px;
+    border-left:2px solid var(--line);
+  }
+  .role{
+    position:relative;
+    padding-bottom:44px;
+  }
+  .role:last-child{ padding-bottom:0; }
+  .role::before{
+    content:'';
+    position:absolute;
+    left:-34px;
+    top:4px;
+    width:12px; height:12px;
+    border-radius:50%;
+    background: var(--bg);
+    border:2px solid var(--mint);
+  }
+  .role-period{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color: var(--text-dim);
+    margin-bottom:6px;
+  }
+  .role-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:1.2rem;
+    font-weight:600;
+  }
+  .role-org{ color: var(--coral); font-weight:500; }
+  .role-desc{ color: var(--text-dim); margin-top:10px; max-width:640px; }
+
+  /* ---------- PROJECTS ---------- */
+  .project{
+    background: var(--surface);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:28px;
+    margin-bottom:22px;
+  }
+  .project-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:14px;
+  }
+  .project-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:1.25rem;
+    font-weight:600;
+  }
+  .project-link{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color: var(--mint);
+    border:1px solid var(--mint);
+    padding:5px 10px;
+    border-radius:6px;
+    white-space:nowrap;
+  }
+  .project-link:hover{ background: var(--mint); color:#0B2416; }
+  .project ul{
+    color: var(--text-dim);
+    padding-left:18px;
+    margin-bottom:16px;
+  }
+  .project li{ margin-bottom:6px; }
+  .badge-row{ display:flex; gap:10px; flex-wrap:wrap; }
+  .badge{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.76rem;
+    background: var(--surface-2);
+    border:1px solid var(--line);
+    padding:6px 12px;
+    border-radius:20px;
+    color: var(--amber);
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skill-groups{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:24px;
+  }
+  .skill-group h3{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.82rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color: var(--text-dim);
+    margin-bottom:14px;
+  }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{
+    font-size:0.82rem;
+    background: var(--surface);
+    border:1px solid var(--line);
+    padding:7px 13px;
+    border-radius:8px;
+  }
+  @media (max-width:720px){
+    .skill-groups{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- AWARDS ---------- */
+  .awards-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:18px;
+  }
+  .award-card{
+    background: var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px;
+  }
+  .award-card .num{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:1.4rem;
+    font-weight:700;
+    color: var(--coral);
+    margin-bottom:6px;
+  }
+  .award-card .label{ color: var(--text-dim); font-size:0.88rem; }
+  @media (max-width:780px){
+    .awards-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{
+    padding: 70px 0 50px;
+    border-top:1px solid var(--line);
+  }
+  .contact-title{
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight:700;
+    max-width:600px;
+    margin-bottom:24px;
+  }
+  .contact-links{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+  }
+  .contact-links a{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.9rem;
+    padding:12px 20px;
+    border:1px solid var(--line);
+    border-radius:10px;
+  }
+  .contact-links a:hover{ border-color: var(--mint); color: var(--mint); }
+  .foot-note{
+    color: var(--text-dim);
+    font-size:0.82rem;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Ambati<span>.</span>Suresh</div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Get in touch</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Available for backend &amp; platform engineering roles</div>
+    <h1 class="display">I make <span class="accent">slow systems</span> fast — then I go find the next slow system.</h1>
+    <p class="hero-sub">Senior Software Engineer with 9 years building high-throughput backend systems, migrating legacy platforms to microservices, and replacing expensive proprietary tooling with open-source engines that perform better. Currently at OpenText, Hyderabad.</p>
+    <div class="hero-cta">
+      <a href="#work" class="btn btn-primary">See the work</a>
+      <a href="#contact" class="btn btn-ghost">Contact me</a>
+    </div>
+
+    <div class="pipeline-card">
+      <div class="pipeline-head">
+        <div class="pipeline-title">// object importer — before vs after re-architecture</div>
+        <div class="pipeline-metric" id="throughput">2.36<span>docs/sec → watch it climb</span></div>
+      </div>
+      <div class="track">
+        <div class="track-line"></div>
+        <div class="stage" style="left:4%"></div>
+        <div class="stage-label" style="left:4%">Ingest</div>
+        <div class="stage" style="left:36%"></div>
+        <div class="stage-label" style="left:36%">Queue</div>
+        <div class="stage" style="left:68%"></div>
+        <div class="stage-label" style="left:68%">72 threads</div>
+        <div class="stage" style="left:97%"></div>
+        <div class="stage-label" style="left:97%">Done</div>
+
+        <div class="doc" style="animation-delay:0s"></div>
+        <div class="doc" style="animation-delay:0.5s"></div>
+        <div class="doc" style="animation-delay:1s"></div>
+        <div class="doc" style="animation-delay:1.5s"></div>
+        <div class="doc" style="animation-delay:2s"></div>
+        <div class="doc" style="animation-delay:2.5s"></div>
+        <div class="doc" style="animation-delay:3s"></div>
+      </div>
+      <div class="pipeline-foot">
+        <span>100k documents: 11h 46m → 34m</span>
+        <span>Peak: 47.87 docs/sec at 9.5 MB/s</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-tag">About</div>
+    <h2 class="display">Nine years of turning "it works" into "it works at scale."</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a backend and platform engineer based in Hyderabad, currently building document-processing infrastructure at OpenText. My focus is the unglamorous but high-leverage work: re-architecting ingestion pipelines, replacing costly proprietary SDKs with open-source equivalents, and squeezing real, measurable performance out of production systems.</p>
+        <p>Before OpenText, I spent six years at TCS modernizing government portals — moving monoliths to Spring Boot microservices and wiring up payment infrastructure used at public scale.</p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat"><div class="stat-num">9 yrs</div><div class="stat-label">Professional experience</div></div>
+        <div class="stat"><div class="stat-num">2,000%</div><div class="stat-label">Throughput gain, Object Importer</div></div>
+        <div class="stat"><div class="stat-num">8x</div><div class="stat-label">High Five Award, OpenText</div></div>
+        <div class="stat"><div class="stat-num">72</div><div class="stat-label">Concurrent threads optimized</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-tag">Experience</div>
+    <h2 class="display">Where I've built things</h2>
+    <div class="timeline">
+      <div class="role">
+        <div class="role-period">DEC 2022 — PRESENT</div>
+        <div class="role-title">Senior Software Engineer <span class="role-org">· OpenText, Hyderabad</span></div>
+        <p class="role-desc">Spearheaded the migration of proprietary PDF engines to Apache PDFBox to eliminate licensing costs, and re-architected the Object Importer into a Distributed Agent Framework — achieving a 2,000% performance gain.</p>
+      </div>
+      <div class="role">
+        <div class="role-period">OCT 2016 — DEC 2022</div>
+        <div class="role-title">Software Engineer <span class="role-org">· Tata Consultancy Services, Hyderabad</span></div>
+        <p class="role-desc">Led the full-stack modernization of legacy government portals into Spring Boot microservices, integrating multi-vendor payment gateways (WorldLine, BillDesk) and automated reporting engines for high-scale public sector applications.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-tag">Selected work</div>
+    <h2 class="display">Projects</h2>
+
+    <div class="project">
+      <div class="project-top">
+        <div class="project-title">Open-Source PDF Engine Migration</div>
+        <span class="project-link">OpenText Content Server</span>
+      </div>
+      <ul>
+        <li>Re-engineered the PDF processing engine within OpenText Content Server to replace commercial Appligent SDKs with Apache PDFBox.</li>
+        <li>Built custom modules for controlled viewing/printing and electronic signatures, preserving document integrity via automated stamps and security overlays.</li>
+        <li>Replicated every legacy proprietary feature — watermarking, security, signatures — with 100% feature parity using open-source libraries.</li>
+        <li>Currently in final testing ahead of production deployment; projected multi-million dollar cost savings.</li>
+      </ul>
+      <div class="badge-row">
+        <span class="badge">Apache PDFBox</span>
+        <span class="badge">Java</span>
+        <span class="badge">Content Server</span>
+        <span class="badge">High Five Award</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div class="project-title">Object Importer — High-Scale Migration Engine</div>
+        <span class="project-link">Featured in OpenText Release 25.2</span>
+      </div>
+      <ul>
+        <li>Replaced a legacy single-threaded ingestion model with a Distributed Agent Framework for high-speed parallel processing.</li>
+        <li>Built independent scheduled bots to decouple ingestion from core system agents, removing thread-blocking and improving stability.</li>
+        <li>Cut ingestion time for 100k documents from 11h 46m to 34 minutes — a 2,000% performance increase, per the performance team's white paper.</li>
+        <li>Scaled throughput from 2.36 to 47.87 documents/sec (9.5 MB/s) across 72 distributed threads.</li>
+        <li>Added resilient fail-and-retry logic with logging and statistical reporting, so customers can fix and re-ingest failed records without restarting.</li>
+      </ul>
+      <div class="badge-row">
+        <span class="badge">Distributed Systems</span>
+        <span class="badge">Concurrency</span>
+        <span class="badge">Java</span>
+        <span class="badge">Performance Engineering</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div class="project-title">Statewide School Education Dashboards</div>
+        <span class="project-link">Govt. of Andhra Pradesh</span>
+      </div>
+      <ul>
+        <li>Built dashboards for every cadre — students, teachers, MEOs, DEOs, and the Commissioner — to capture data, generate reports, and geo-tag every school in the state.</li>
+        <li>Developed a self-service dashboard for individuals to apply for permission to open a new private school, consolidating approvals from multiple departments into one flow.</li>
+        <li>Integrated the WorldLine payment gateway for application fees, with a Spring Batch job to reprocess delayed or failed payments.</li>
+        <li>Automated report and Excel generation, plus a module for uploading and downloading files in specific formats to and from file servers.</li>
+      </ul>
+      <div class="badge-row">
+        <span class="badge">Spring Boot</span>
+        <span class="badge">Spring Batch</span>
+        <span class="badge">WorldLine</span>
+        <span class="badge">Geo-tagging</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-tag">Toolbox</div>
+    <h2 class="display">Skills</h2>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h3>Cloud &amp; Infrastructure</h3>
+        <div class="chip-row">
+          <span class="chip">AWS</span>
+          <span class="chip">Kubernetes</span>
+          <span class="chip">Docker</span>
+          <span class="chip">Rancher Desktop</span>
+          <span class="chip">Terraform</span>
+          <span class="chip">GitLab CI/CD</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Backend &amp; Frameworks</h3>
+        <div class="chip-row">
+          <span class="chip">Spring Boot</span>
+          <span class="chip">Spring MVC</span>
+          <span class="chip">Spring Data JPA</span>
+          <span class="chip">Spring Batch</span>
+          <span class="chip">Hibernate</span>
+          <span class="chip">Microservices</span>
+          <span class="chip">REST APIs</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Messaging &amp; Data</h3>
+        <div class="chip-row">
+          <span class="chip">Kafka</span>
+          <span class="chip">RabbitMQ</span>
+          <span class="chip">Memcached</span>
+          <span class="chip">PDFBox</span>
+          <span class="chip">Appligent Libraries</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Frontend &amp; Tooling</h3>
+        <div class="chip-row">
+          <span class="chip">HTML5</span>
+          <span class="chip">CSS3</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">jQuery</span>
+          <span class="chip">Thymeleaf</span>
+          <span class="chip">Tiles</span>
+          <span class="chip">GitHub Copilot</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="awards">
+  <div class="wrap">
+    <div class="section-tag">Recognition &amp; interests</div>
+    <h2 class="display">Awards and what I geek out on</h2>
+    <div class="awards-grid">
+      <div class="award-card">
+        <div class="num">×8</div>
+        <div class="label">High Five Award, OpenText — technical initiative and cost savings</div>
+      </div>
+      <div class="award-card">
+        <div class="num">Best</div>
+        <div class="label">TCS Digital Associate — Best Performer</div>
+      </div>
+      <div class="award-card">
+        <div class="num">Focus</div>
+        <div class="label">Problem solving &amp; DSA · System design · Microservices</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="section-tag">Contact</div>
+    <div class="contact-title">Building something that needs to run faster? Let's talk.</div>
+    <div class="contact-links">
+      <a href="mailto:ambati1939@gmail.com">ambati1939@gmail.com</a>
+      <a href="tel:9848881086">9848881086</a>
+      <a href="#">Hyderabad, Telangana</a>
+    </div>
+    <div class="foot-note">
+      <span>Ambati Suresh — Senior Software Engineer</span>
+      <span>Built with HTML, CSS &amp; a bit of Spring Boot muscle memory</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Animate the throughput number climbing from 2.36 to 47.87 once, on load
+  const el = document.getElementById('throughput');
+  const label = el.querySelector('span');
+  const start = 2.36, end = 47.87, duration = 3200;
+  const startTime = performance.now();
+
+  function frame(now){
+    const t = Math.min(1, (now - startTime) / duration);
+    const eased = 1 - Math.pow(1 - t, 3);
+    const val = (start + (end - start) * eased).toFixed(2);
+    el.firstChild.nodeValue = val;
+    if(t < 1){
+      requestAnimationFrame(frame);
+    } else {
+      label.textContent = 'docs/sec — peak throughput';
+    }
+  }
+  requestAnimationFrame(frame);
+</script>
+
+</body>
+</html>
